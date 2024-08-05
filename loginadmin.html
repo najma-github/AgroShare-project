@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>User Portal | AgroShare</title>
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .icon {
+      color: green;
+      font-size: 4.3em;
+    }
+
+    .video-background {
+      position: fixed;
+      right: 4;
+      left: 1;
+      bottom: -10px;
+      top: -350px;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      position: relative;
+      z-index: 4;
+    }
+
+    .form-container {
+      background-color: rgba(144, 238, 144, 0.5);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body class="products-page">
+  <video autoplay muted loop class="video-background">
+    <source src="assets/Video/8540468-hd_1920_1080_30fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="content">
+    <header id="header" class="header d-flex align-items-center position-relative">
+      <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="AgriCulture">
+        </a>
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html"><i class="fas fa-home icon"></i></a></li>
+            <li><a href="contact.html"><i class="fas fa-address-book icon"></i></a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <main class="main">
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6 form-container">
+          <div class="text-center mb-4">
+            <div class="btn-group" role="group" aria-label="User Type Toggle">
+              <button type="button" class="btn btn-toggle active" id="toggleFarmer">
+                <i class="fas fa-seedling"></i> Admin Login
+              </button>
+            </div>
+          </div>
+
+          <!-- login form start -->
+          <form id="loginForm">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" required style="width: 100%;"> <br>
+
+            <label for="password">Password:</label> <br>
+            <input type="password" id="password" required style="width: 100%;"> <br>
+            <div class="row justify-content-center mt-4">
+              <div class="col-md-3 text-center">
+                <button type="submit" class="btn btn-success" id="sign_in">Sign In</button>
+              </div>
+            </div>
+          </form>
+
+          <div style="text-align: center;">
+            Don't have an account? <a href="register.html">Register</a>
+          </div>
+          <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog"
+            aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="forgotPasswordModalLabel">Request a Password Reset</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="reset-email">Email:</label>
+                      <input type="email" class="form-control" id="reset-email" placeholder="Enter your email">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Send</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+          <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+            import { query, get, orderByChild, equalTo, ref, getDatabase } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+            // Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
+              authDomain: "agrosharetest.firebaseapp.com",
+              databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "agrosharetest",
+              storageBucket: "agrosharetest.appspot.com",
+              messagingSenderId: "609785482458",
+              appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
+            document.getElementById('loginForm').addEventListener('submit', async function (event) {
+              event.preventDefault();
+
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+
+              if (email === "" || password === "") {
+                alert("Please fill out all fields.");
+                return;
+              }
+
+              try {
+                const userRef = ref(db, 'registerdetails');
+                const userQuery = query(userRef, orderByChild('email'), equalTo(email));
+                const snapshot = await get(userQuery);
+
+                if (snapshot.exists()) {
+                  const userData = snapshot.val();
+                  let userFound = false;
+
+                  for (const key in userData) {
+                    if (userData[key].password === password && userData[key].role === 'admin') {
+                      userFound = true;
+                      break;
+                    }
+                  }
+
+                  if (userFound) {
+                    // Redirect to the appropriate page based on user type or other criteria
+                    window.location.href = 'admin_confirmation.html'; // Change as needed
+                  } else {
+                    alert("You do not have the necessary permissions to access this page.");
+                  }
+                } else {
+                  alert("No account found with this email. Please register.");
+                }
+              } catch (error) {
+                alert("Error during login: " + error.message);
+                console.error("Login error:", error);
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="mt-5"></div>
+  <footer id="footer" class="footer dark-background">
+    <div class="copyright text-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+        <div class="d-flex flex-column align-items-center align-items-lg-start">
+          <p>© 2023 AgroShare. All rights reserved.</p>
+          <p class="small"><a class="text-white" href="#">Privacy Policy</a></p>
+          <p class="small"><a class="text-white" href="#">Terms of Service</a></p>
+        </div>
+        <div class="social-links mt-3 mt-lg-0">
+          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

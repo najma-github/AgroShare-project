@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>User Portal | AgroShare</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .icon {
+      color: green;
+      font-size: 4.3em;
+    }
+    .video-background {
+      position: fixed;
+      right: 4;
+      left: 1;
+      bottom: -10px;
+      top: -350px;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    .header {
+      position: relative;
+      z-index: 4;
+    }
+    .form-container {
+      background-color: rgba(144, 238, 144, 0.5);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body class="products-page">
+  <!-- Video Background -->
+  <video autoplay muted loop class="video-background">
+    <source src="assets\Video\8540468-hd_1920_1080_30fps.mp4"
+      type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Content goes here -->
+  <div class="content">
+    <header id="header" class="header d-flex align-items-center position-relative">
+      <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="AgriCulture">
+        </a>
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html"><i class="fas fa-home icon"></i></a></li>
+            <li><a href="contact.html"><i class="fas fa-address-book icon"></i> </a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <main class="main">
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6 form-container">
+          <div class="text-center mb-4">
+            <div class="btn-group" role="group" aria-label="User Type Toggle">
+              <button type="button" class="btn btn-toggle active" id="toggleFarmer">
+                <i class="fas fa-seedling"></i> Farmer Register
+              </button>
+            </div>
+          </div>
+          <form id="register-form" onsubmit="event.preventDefault();">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" style="width: 100%;" required> <br>
+            <label for="password">Password:</label> <br>
+            <input type="password" id="password" style="width: 100%;" required> <br>
+            <div style="text-align: left;"> <br>
+              <button type="submit" class="btn btn-success btn-block">Register</button>
+            </div>
+          </form>
+
+          <div style="text-align: center;">
+            Already Registered? <a href="login.html">Login Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
+      authDomain: "agrosharetest.firebaseapp.com",
+      databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "agrosharetest",
+      storageBucket: "agrosharetest.appspot.com",
+      messagingSenderId: "609785482458",
+      appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+
+    // Register user
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save user details to Realtime Database
+        const userRef = ref(database, 'registerdetails/' + user.uid);
+        await set(userRef, {
+          email: email,
+          password: password, // Be cautious about storing passwords directly. Consider hashing them server-side.
+          role: 'farmer'
+        });
+
+        console.log('User registered and details saved:', user);
+        alert("Registration Successful");
+        window.location.href = 'login.html';
+      } catch (error) {
+        alert("Error registering user");
+        console.error('Error registering user:', error);
+      }
+    });
+  </script>
+</body>
+</html>

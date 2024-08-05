@@ -1,0 +1,93 @@
+/*
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.btn-toggle {
+    border-radius: 40px; /* Rounded corners */
+    font-weight: bold;
+    width: 180px; /* Adjust width as needed */
+}
+
+.btn-toggle.active {
+    background-color: #28a745; /* Dark green for Elderly Care Home */
+    color: white;
+}
+
+.btn-toggle:not(.active) {
+    background-color: #cdf0d0; /* Light green for Farmers */
+    color: #333; 
+}
+
+.btn-toggle.active:focus, .btn-toggle.active:hover {
+    background-color: #28a745;
+    color: #333;
+}
+
+.text-center a {
+    color: #28a745;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+.text-green {
+    color: #28a745; Green color for links, adjust as per your theme */
+}
+
+.forgot-password {
+    float: right;
+    margin-right: 8px; /* Adjust alignment */
+    margin-top: 0; /* Reset top margin */
+}
+
+.form-check-label {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.form-check-label .forgot-password {
+    margin-left: auto; /* Push "Forgot password?" link to the right */
+} 
+
+.form-check-label .form-check-input {
+    margin: 0; /* Reset any default margin */
+    vertical-align: middle; /* Adjust vertical alignment if needed */
+}
+
+/* Custom checkbox style */
+.form-check-input:checked {
+    background-color: #28a745; /* Green color for the checkbox tick */
+    border-color: #28a745; /* Match the border color to checkbox tick color */
+    box-shadow: none; /* Remove default box-shadow */
+}
+
+/* Contact button*/
+.btn-green {
+    display: inline-block;
+    padding: 14px 28px; /* Adjusted padding for a snug fit 
+    background-color: green;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%; /* Fully rounded corners 
+    border: 2px solid green;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 4px 2px;
+}
+
+.btn-green:hover {
+    background-color: white;
+    color: green;
+}
+*/

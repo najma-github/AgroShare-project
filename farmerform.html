@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Farmer Product Form | AgroShare</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <style>
+        .icon {
+            color: green;
+            font-size: 4.3em;
+        }
+
+        .form-container {
+            background-color: rgba(144, 238, 144, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-close-custom {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #99ff8c;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .btn-close-custom::before {
+            content: '×';
+            font-size: 20px;
+            color: #333;
+            line-height: 1;
+        }
+
+        .modal-content {
+            position: relative;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .video-background {
+            position: fixed;
+            right: 4;
+            left: 1;
+            bottom: -10px;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            position: relative;
+            z-index: 4;
+        }
+    </style>
+
+    <!-- <script type="module" src="register.js" defer></script> -->
+</head>
+
+<body class="products-page">
+    <!-- Video Background -->
+    <video autoplay muted loop class="video-background">
+        <source src="assets\Video\8540468-hd_1920_1080_30fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Content goes here -->
+    <div class="content">
+        <header id="header" class="header d-flex align-items-center position-relative">
+            <div
+                class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <img src="assets/img/logo.png" alt="AgriCulture">
+                </a>
+
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home icon"></i></a></li>
+                        <li><a href="contact.html"><i class="fas fa-address-book icon"></i></a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main" class="main">
+            <div class="container" style="width: 100%;">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8 form-container">
+                        <form id="farmerform">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="farmName" style="font-weight: bold;">Farm Name</label>
+                                <input id="farmName" name="farmName" placeholder="Name of The Farm"
+                                    class="form-control mb-2" required>
+                                <div class="invalid-feedback">Please enter the name of the farm.</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="farmProvince" style="font-weight: bold;">Farm
+                                    Province</label>
+                                <select name="farmProvince" class="form-control" id="farmProvince" required>
+                                    <option value="" disabled selected hidden>Select Province</option>
+                                    <option value="Central">Central</option>
+                                    <option value="Eastern">Eastern</option>
+                                    <option value="North Central">North Central</option>
+                                    <option value="Northern">Northern</option>
+                                    <option value="North Western">North Western</option>
+                                    <option value="Sabaragamuwa">Sabaragamuwa</option>
+                                    <option value="Southern">Southern</option>
+                                    <option value="Uva">Uva</option>
+                                    <option value="Western">Western</option>
+                                </select>
+                                <div class="invalid-feedback">Please select the province of the farm.</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="productType" style="font-weight: bold;">Product
+                                    Type</label>
+                                <select class="form-control" name="productType" id="productType" required>
+                                    <option value="" disabled selected hidden>Select Product Type</option>
+                                    <option value="fruits">Fruits</option>
+                                    <option value="vegetables">Vegetables</option>
+                                    <option value="dairy">Dairy Products</option>
+                                    <option value="mixed">Mixed</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a product type.</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="productName" style="font-weight: bold;">Product
+                                    Name</label>
+                                <input name="productName" class="form-control"
+                                    placeholder="Enter the Name of Your Product" id="productName" required>
+                                <div class="invalid-feedback">Please enter the name of your product.</div>
+                            </div>
+
+                            <!-- <div class="form-outline mb-4">
+                                <label class="form-label" for="productID" style="font-weight: bold;">Product Unique
+                                    ID</label>
+                                <input name="productID" class="form-control" placeholder="Enter the ID of Your Product"
+                                    id="productID" required>
+                                <div class="invalid-feedback">Please enter the ID of your product.</div>
+                            </div> -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="productdescription" style="font-weight: bold;">Product
+                                    Description</label>
+                                    <textarea name="productdescription" id="productdescription" class="form-control" required></textarea>
+                                <!-- <input name="productName" class="form-control"
+                                    placeholder="Enter the Name of Your Product" id="productName" required> -->
+                                <div class="invalid-feedback">Please enter the Description of your product.</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="itemsIncluded" style="font-weight: bold;">Items Included</label>
+                                    <textarea name="itemsIncluded" id="itemsIncluded" class="form-control" required></textarea>
+                                <!-- <input name="productName" class="form-control"
+                                    placeholder="Enter the Name of Your Product" id="productName" required> -->
+                                <div class="invalid-feedback">Please enter the Items Included </div>
+                            </div>
+
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="productImage" style="font-weight: bold;">Upload The
+                                    Product Image</label>
+                                <input type="file" name="productImage" class="form-control" id="productImage"
+                                    accept="image/*" required>
+                                <div class="invalid-feedback">Please upload the product image.</div>
+                            </div>
+
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-md-3 text-center">
+                                    <button type="submit" class="btn btn-success" id="Fsubmit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer id="footer" class="footer dark-background">
+            <div class="copyright text-center">
+                <div
+                    class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+                    <div class="d-flex flex-column align-items-center align-items-lg-start">
+                        <div>© Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved</div>
+                        <div class="credits">Designed by <a href="https://bootstrapmade.com/">Najma Dhasthakeer</a>
+                        </div>
+                    </div>
+
+                    <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-youtube"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center">
+                    <i class="fa fa-check-circle" style="color: green; font-size: 5em;"></i>
+                    <h4 class="mt-3">Success!</h4>
+                    <p>Your data has been successfully submitted.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center">
+                    <i class="fa fa-times-circle" style="color: red; font-size: 5em;"></i>
+                    <h4 class="mt-3">Error!</h4>
+                    <p>There was an error submitting your data. Please try again.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- firebase script -->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { ref as dbRef, set, getDatabase } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
+        authDomain: "agrosharetest.firebaseapp.com",
+        databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "agrosharetest",
+        storageBucket: "agrosharetest.appspot.com",
+        messagingSenderId: "609785482458",
+        appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const storage = getStorage(app);
+
+    document.getElementById('farmerform').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    let farmName = document.getElementById('farmName').value;
+    let farmProvince = document.getElementById('farmProvince').value;
+    let productType = document.getElementById('productType').value;
+    let productName = document.getElementById('productName').value;
+    let productdescription = document.getElementById('productdescription').value;
+    let itemsIncluded = document.getElementById('itemsIncluded').value; // New field
+    let productImageFile = document.getElementById('productImage').files[0];
+
+    if (farmName === "" || farmProvince === "" || productType === "" || productName === "" || productdescription === "" || !productImageFile) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    try {
+        const uniqueCode = 'ProductID_' + Date.now();
+
+        // Upload image to Firebase Storage
+        const imageRef = storageRef(storage, 'Product_images/' + uniqueCode + '_' + productImageFile.name);
+        await uploadBytes(imageRef, productImageFile);
+        const imageUrl = await getDownloadURL(imageRef);
+
+        // Store data in Realtime Database
+        await set(dbRef(db, 'Product_details_to_be_confirm/' + uniqueCode), {
+            farmName: farmName,
+            farmProvince: farmProvince,
+            productName: productName,
+            productType: productType,
+            productdescription: productdescription,
+            itemsIncluded: itemsIncluded, // Store the items included
+            productImageUrl: imageUrl // Store the image URL
+        });
+
+        alert("Details submitted for review!");
+        farmerform.reset();
+    } catch (error) {
+        console.error("Error during form submission: ", error);
+        alert("There was an error submitting your data. Please try again.");
+    }
+});
+
+</script>
+
+
+
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+</html>
