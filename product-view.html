@@ -10,8 +10,9 @@
 
     <!-- Favicons -->
     <!-- <link href="assets/img/favicon.png" rel="icon"> -->
+    <!-- Favicons LOGO-->
+    <link href="assets/img/favicon.jpeg" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
@@ -109,15 +110,7 @@
                         </div>
                         <div class="col-lg-13">
                             <div class="row g-4 justify-content-center" id="product-container">
-
-
-                                <!-- <div class="row" id="product-container">
-                                   
-                                </div> -->
-
-
-                                <!-- data item 2 -->
-                                <!-- <div class="col-md-6 col-lg-6 col-xl-4 product-item" data-province="northern-western"
+                                 <div class="col-md-6 col-lg-6 col-xl-4 product-item" data-province="northern-western"
                                     data-type="vegetables">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
@@ -137,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
 
 
                                 <!-- Fruits Shop End -->
@@ -279,50 +272,8 @@
         </script> -->
 
             <script type="module">
-                function filterProducts() {
-                    const province = document.getElementById('province').value;
-                    const type = document.getElementById('type').value;
-                    const products = document.querySelectorAll('.product-item');
-                    let hasVisibleProducts = false;
 
-                    // Define the specific cases where "No Result Found" should be displayed
-                    const noResultCases = [
-                        { type: 'Fruit', province: 'northern-western' },
-                        { type: 'Vegetables', province: 'northern-central' },
-                        { type: 'Dairy', province: 'northern' },
-                        { type: 'Mixed', province: 'northern-central' }
-                    ];
-
-                    // Check if the current selection matches any of the specific cases
-                    const noResultCase = noResultCases.find(caseItem => caseItem.type === type && caseItem.province === province);
-
-                    if (noResultCase) {
-                        // Hide all products
-                        products.forEach(product => product.style.display = 'none');
-                        // Display "No Result Found"
-                        document.getElementById('no-products').style.display = 'block';
-                        return; // Exit function early
-                    }
-
-                    // If not a special case, proceed with normal filtering
-                    products.forEach(product => {
-                        const productProvince = product.getAttribute('data-province');
-                        const productType = product.getAttribute('data-type');
-
-                        if ((province === '' || productProvince === province) &&
-                            (type === '' || productType === type)) {
-                            product.style.display = 'block';
-                            hasVisibleProducts = true;
-                        } else {
-                            product.style.display = 'none';
-                        }
-                    });
-
-                    // Display "No Result Found" if no products are visible
-                    document.getElementById('no-products').style.display = hasVisibleProducts ? 'none' : 'block';
-                }
-
-
+                
             </script>
 
 
@@ -332,13 +283,14 @@
 
 
                 const firebaseConfig = {
-                    apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
-                    authDomain: "agrosharetest.firebaseapp.com",
-                    databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
-                    projectId: "agrosharetest",
-                    storageBucket: "agrosharetest.appspot.com",
-                    messagingSenderId: "609785482458",
-                    appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+                    apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
+                    authDomain: "agroshare-project.firebaseapp.com",
+                    databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
+                    projectId: "agroshare-project",
+                    storageBucket: "agroshare-project.appspot.com",
+                    messagingSenderId: "444750909875",
+                    appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
+                    measurementId: "G-WBVY2TF663"
                 };
 
                 const app = initializeApp(firebaseConfig);
@@ -373,7 +325,7 @@
     <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: rgb(241, 90, 3);">${product.productType || 'Type'}</div>
     <div class="p-4 border border-secondary border-top-0 rounded-bottom" style="background-color: #c3e6cb;">
       <h4 style="font-weight: bold; color: #004d00;">${product.productName || 'Product Name'}</h4>
-      <p style="margin-bottom: 64.6px;">${product.productdescription  || 'Product Description'}</p>
+      <p style="margin-bottom: 64.6px;">${product.productdescription || 'Product Description'}</p>
       <div class="d-flex justify-content-between flex-lg-wrap">
         <a href="${product.productLink || 'fruitful-delights.html'}" class="btn border border-secondary rounded-pill px-3 text-primary" target="_blank">
           <i class="fa fa-shopping-bag me-2 text-primary"></i> Unwrap
@@ -389,26 +341,75 @@
                 });
 
                 function generateProductLinks(products) {
-    const productList = document.getElementById('productList');
-    productList.innerHTML = ''; // Clear previous content
+                    const productList = document.getElementById('productList');
+                    productList.innerHTML = ''; // Clear previous content
 
-    products.forEach(product => {
-      const link = document.createElement('a');
-      link.href = `fruitful_delights.html?productID=${product.productID}`;
-      link.textContent = `Reserve Surprise Bag for ${product.productName}`;
-      productList.appendChild(link);
-      productList.appendChild(document.createElement('br'));
-    });
-  }
+                    products.forEach(product => {
+                        const link = document.createElement('a');
+                        link.href = `fruitful_delights.html?productID=${product.productID}`;
+                        link.textContent = `Reserve Surprise Bag for ${product.productName}`;
+                        productList.appendChild(link);
+                        productList.appendChild(document.createElement('br'));
+                    });
+                }
 
-  // Example product data
-  const exampleProducts = [
-    { productID: '12345', productName: 'Apple Basket' },
-    { productID: '67890', productName: 'Orange Basket' }
-  ];
+                // Example product data
+                const exampleProducts = [
+                    { productID: '12345', productName: 'Apple Basket' },
+                    { productID: '67890', productName: 'Orange Basket' }
+                ];
 
-  // Generate links for the example products
-  generateProductLinks(exampleProducts);
+                // Generate links for the example products
+                generateProductLinks(exampleProducts);
+
+                function filterProducts() {
+                    const province = document.getElementById('province').value;
+                    const type = document.getElementById('type').value;
+                    const products = document.querySelectorAll('.product-item');
+                    let hasVisibleProducts = false;
+
+                    // Define the specific cases where "No Result Found" should be displayed
+                    const noResultCases = [
+                        { type: 'fruits', province: 'northern-western' },
+                        { type: 'vegetables', province: 'northern-central' },
+                        { type: 'dairy', province: 'northern' },
+                        { type: 'mixed', province: 'northern-central' }
+                    ];
+
+                    // Check if the current selection matches any of the specific cases
+                    const noResultCase = noResultCases.find(caseItem => caseItem.type === type && caseItem.province === province);
+
+                    if (noResultCase) {
+                        // Hide all products
+                        products.forEach(product => product.style.display = 'none');
+                        // Display "No Result Found"
+                        document.getElementById('no-products').style.display = 'block';
+                        console.log("No results found for the selected filters.");
+                        return; // Exit function early
+                    }
+
+                    // If not a special case, proceed with normal filtering
+                    products.forEach(product => {
+                        const productProvince = product.getAttribute('data-province');
+                        const productType = product.getAttribute('data-type');
+
+                        if ((province === '' || productProvince === province) &&
+                            (type === '' || productType === type)) {
+                            product.style.display = 'block';
+                            hasVisibleProducts = true;
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+
+                    // Display "No Result Found" if no products are visible
+                    const noProductsElement = document.getElementById('no-products');
+                    noProductsElement.style.display = hasVisibleProducts ? 'none' : 'block';
+                    if (!hasVisibleProducts) {
+                        console.log("No products found for the selected filters.");
+                    }
+                }
+
             </script>
 
 

@@ -10,8 +10,9 @@
 
     <!-- Favicons -->
     <!-- <link href="assets/img/favicon.png" rel="icon"> -->
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Favicons LOGO-->
+  <link href="assets/img/favicon.jpeg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
@@ -85,6 +86,7 @@
                                     <select id="province" class="form-control-product mx-2">
                                         <option value="" disabled selected hidden>Select Province</option>
                                         <option value="northern">Northern</option>
+                                        <option value="central">Central</option>
                                         <option value="northern-central">Northern Central</option>
                                         <option value="northern-western">Northern Western</option>
                                     </select>
@@ -362,8 +364,8 @@
 
                             const productItem = document.createElement('div');
                             productItem.className = 'col-md-6 col-lg-6 col-xl-4 product-item';
-                            productItem.setAttribute('data-province', product.province || 'unknown');
-                            productItem.setAttribute('data-type', product.type || 'unknown');
+                            productItem.setAttribute('data-province', product.province || 'Central');
+                            productItem.setAttribute('data-type', product.type || 'fruit');
 
                             productItem.innerHTML = `
   <div class="rounded position-relative fruite-item">
@@ -387,11 +389,31 @@
                         }
                     });
                 });
+
+                function generateProductLinks(products) {
+                    const productList = document.getElementById('productList');
+                    productList.innerHTML = ''; // Clear previous content
+
+                    products.forEach(product => {
+                        const link = document.createElement('a');
+                        link.href = `fruitful_delights.html?productID=${product.productID}`;
+                        link.textContent = `Reserve Surprise Bag for ${product.productName}`;
+                        productList.appendChild(link);
+                        productList.appendChild(document.createElement('br'));
+                    });
+                }
+
+                // Example product data
+                const exampleProducts = [
+                    { productID: '12345', productName: 'Apple Basket' },
+                    { productID: '67890', productName: 'Orange Basket' }
+                ];
+
+                // Generate links for the example products
+                generateProductLinks(exampleProducts);
             </script>
 
 
-
-            // updated html
 
             </script>
 

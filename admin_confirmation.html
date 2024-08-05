@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>User Portal | AgroShare</title>
-  <link href="assets/img/favicon.png" rel="icon">
+  <!-- Favicons LOGO-->
+  <link href="assets/img/favicon.jpeg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
   <style>
@@ -15,6 +18,7 @@
       color: green;
       font-size: 4.3em;
     }
+
     .video-background {
       position: fixed;
       right: 4;
@@ -26,14 +30,17 @@
       z-index: -1;
       object-fit: cover;
     }
+
     .content {
       position: relative;
       z-index: 1;
     }
+
     .header {
       position: relative;
       z-index: 4;
     }
+
     .form-container {
       background-color: rgba(144, 238, 144, 0.5);
       border-radius: 15px;
@@ -42,6 +49,7 @@
     }
   </style>
 </head>
+
 <body class="products-page">
   <div class="content">
     <header id="header" class="header d-flex align-items-center position-relative">
@@ -87,13 +95,14 @@
     import { getDatabase, ref, onValue, remove, set } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
-        authDomain: "agrosharetest.firebaseapp.com",
-        databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "agrosharetest",
-        storageBucket: "agrosharetest.appspot.com",
-        messagingSenderId: "609785482458",
-        appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+      apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
+      authDomain: "agroshare-project.firebaseapp.com",
+      databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
+      projectId: "agroshare-project",
+      storageBucket: "agroshare-project.appspot.com",
+      messagingSenderId: "444750909875",
+      appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
+      measurementId: "G-WBVY2TF663"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -103,13 +112,13 @@
     const productsRef = ref(db, 'Product_details_to_be_confirm/');
 
     onValue(productsRef, (snapshot) => {
-        productTableBody.innerHTML = '';
-        snapshot.forEach((childSnapshot) => {
-            const productData = childSnapshot.val();
-            const productKey = childSnapshot.key;
+      productTableBody.innerHTML = '';
+      snapshot.forEach((childSnapshot) => {
+        const productData = childSnapshot.val();
+        const productKey = childSnapshot.key;
 
-            const row = document.createElement('tr');
-            row.innerHTML = `
+        const row = document.createElement('tr');
+        row.innerHTML = `
                 <td>${productData.farmName}</td>
                 <td>${productData.farmProvince}</td>
                 <td>${productData.productType}</td>
@@ -122,16 +131,16 @@
                     <button class="btn btn-danger" onclick='rejectProduct("${productKey}")'>Reject</button>
                 </td>
             `;
-            productTableBody.appendChild(row);
-        });
+        productTableBody.appendChild(row);
+      });
     });
 
     window.acceptProduct = async function (productKey, productData) {
-    console.log('Accept button clicked');
-    console.log('Product Key:', productKey);
-    console.log('Product Data:', productData);
+      console.log('Accept button clicked');
+      console.log('Product Key:', productKey);
+      console.log('Product Data:', productData);
 
-    try {
+      try {
         // Move product data to confirmed products
         await set(ref(db, 'Product_details/' + productKey), productData);
         console.log('Data written to Product_details successfully');
@@ -141,29 +150,30 @@
         console.log('Data removed from Product_details_to_be_confirm successfully');
 
         alert("Product Accepted and Moved to Confirmed Products");
-    } catch (error) {
+      } catch (error) {
         console.error('Error accepting product:', error);
         alert('An error occurred while accepting the product.');
-    }
-};
+      }
+    };
 
 
     window.rejectProduct = async function (productKey) {
-        try {
-            // Remove the product data from unconfirmed products
-            await remove(ref(db, 'Product_details_to_be_confirm/' + productKey));
-            alert("Product Rejected and Removed from List");
-        } catch (error) {
-            console.error('Error rejecting product:', error);
-            alert('An error occurred while rejecting the product.');
-        }
+      try {
+        // Remove the product data from unconfirmed products
+        await remove(ref(db, 'Product_details_to_be_confirm/' + productKey));
+        alert("Product Rejected and Removed from List");
+      } catch (error) {
+        console.error('Error rejecting product:', error);
+        alert('An error occurred while rejecting the product.');
+      }
     };
   </script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <div class="mt-5"></div>
   <footer id="footer" class="footer dark-background">
     <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
         <div class="d-flex flex-column align-items-center align-items-lg-start">
           <p>© 2023 AgroShare. All rights reserved.</p>
           <p class="small"><a class="text-white" href="#">Privacy Policy</a></p>
@@ -178,11 +188,13 @@
       </div>
     </div>
   </footer>
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

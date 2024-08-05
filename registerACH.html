@@ -8,15 +8,17 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <!-- Favicons LOGO-->
+  <link href="assets/img/favicon.jpeg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -138,7 +140,8 @@
             Already Registered? <a href="loginACH.html">Login Now</a>
           </div>
 
-          <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+          <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog"
+            aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -170,13 +173,14 @@
 
             // Your web app's Firebase configuration
             const firebaseConfig = {
-              apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
-              authDomain: "agrosharetest.firebaseapp.com",
-              databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
-              projectId: "agrosharetest",
-              storageBucket: "agrosharetest.appspot.com",
-              messagingSenderId: "609785482458",
-              appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+              apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
+              authDomain: "agroshare-project.firebaseapp.com",
+              databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
+              projectId: "agroshare-project",
+              storageBucket: "agroshare-project.appspot.com",
+              messagingSenderId: "444750909875",
+              appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
+              measurementId: "G-WBVY2TF663"
             };
 
             // Initialize Firebase
@@ -203,15 +207,15 @@
                     password: password,
                     role: 'ACH'
                   })
-                  .then(() => {
-                    console.log('User data saved to database');
-                    alert("Registration Successful");
-                    // Redirect to login page
-                    window.location.href = 'loginACH.html';
-                  })
-                  .catch((error) => {
-                    console.error('Error saving user data to database:', error);
-                  });
+                    .then(() => {
+                      console.log('User data saved to database');
+                      alert("Registration Successful");
+                      // Redirect to login page
+                      window.location.href = 'loginACH.html';
+                    })
+                    .catch((error) => {
+                      console.error('Error saving user data to database:', error);
+                    });
                 })
                 .catch((error) => {
                   alert("Error registering user");
@@ -227,7 +231,8 @@
   <div class="mt-5"></div>
   <footer id="footer" class="footer dark-background">
     <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
         <div class="d-flex flex-column align-items-center align-items-lg-start">
           <div>
             © Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved
@@ -248,7 +253,8 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -263,4 +269,5 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

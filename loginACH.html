@@ -87,11 +87,10 @@
 
 </head>
 
-<body >
+<body>
   <!-- Video Background -->
   <video autoplay muted loop class="video-background">
-    <source src="assets\Video\8540468-hd_1920_1080_30fps.mp4"
-      type="video/mp4">
+    <source src="assets\Video\8540468-hd_1920_1080_30fps.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -142,7 +141,7 @@
             </div>
           </form>
 
-        
+
 
           <div style="text-align: center;">
             Don't have an account? <a href="registerACH.html">Register</a>
@@ -222,14 +221,15 @@
   <div class="mt-5"></div>
   <footer id="footer" class="footer dark-background">
     <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
 
         <div class="d-flex flex-column align-items-center align-items-lg-start">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <!-- <span class="sitename">AgriCulture</span> -->
-            </a>
-            <div class="footer-contact pt-3">
-              <!-- <p>Aniwatta</p>
+          <a href="index.html" class="logo d-flex align-items-center">
+            <!-- <span class="sitename">AgriCulture</span> -->
+          </a>
+          <div class="footer-contact pt-3">
+            <!-- <p>Aniwatta</p>
               <p>Kandy</p>
               <p class="mt-3"><strong>Phone:</strong> <span>+94 5589 55488 55</span></p>
               <p><strong>Email:</strong> <span>agroshare@service.com</span></p>
@@ -273,14 +273,15 @@
     </div>
 
     <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
 
         <div class="d-flex flex-column align-items-center align-items-lg-start">
           <div>
             © Copyright <strong><span></span></strong>. All Rights Reserved
           </div>
           <div class="credits">
-           
+
             Designed by <a href="https://bootstrapmade.com/">Najma Dhasthakeer</a>
           </div>
         </div>
@@ -318,58 +319,58 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
     import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
     import { signInWithEmailAndPassword, getAuth } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
-  
+
     // Firebase configuration
     const firebaseConfig = {
-     apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
-  authDomain: "agroshare-project.firebaseapp.com",
-  databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
-  projectId: "agroshare-project",
-  storageBucket: "agroshare-project.appspot.com",
-  messagingSenderId: "444750909875",
-  appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
-  measurementId: "G-WBVY2TF663"
+    apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
+    authDomain: "agroshare-project.firebaseapp.com",
+    databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
+    projectId: "agroshare-project",
+    storageBucket: "agroshare-project.appspot.com",
+    messagingSenderId: "444750909875",
+    appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
+    measurementId: "G-WBVY2TF663"
     };
-  
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
-  
+
     document.getElementById('login-form-ACH').addEventListener('submit', async (e) => {
-      e.preventDefault();
-  
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-  
-      try {
-        // Sign in with email and password
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-  
-        // Check user role in Realtime Database
-        const userRef = ref(db, 'registerdetails/' + user.uid);
-        const snapshot = await get(userRef);
-  
-        if (snapshot.exists()) {
-          const userData = snapshot.val();
-  
-          if (userData.role === 'ACH') {
-            // Redirect to the desired page upon successful login
-            window.location.href = 'product-view.html';
-          } else {
-            alert('You do not have the necessary permissions to access this page.');
-          }
-        } else {
-          alert('User data not found.');
-        }
-      } catch (error) {
-        console.error('Error logging in:', error.message);
-        alert('Login failed: ' + error.message);
-      }
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+    // Sign in with email and password
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Check user role in Realtime Database
+    const userRef = ref(db, 'registerdetails/' + user.uid);
+    const snapshot = await get(userRef);
+
+    if (snapshot.exists()) {
+    const userData = snapshot.val();
+
+    if (userData.role === 'ACH') {
+    // Redirect to the desired page upon successful login
+    window.location.href = 'product-view.html';
+    } else {
+    alert('You do not have the necessary permissions to access this page.');
+    }
+    } else {
+    alert('User data not found.');
+    }
+    } catch (error) {
+    console.error('Error logging in:', error.message);
+    alert('Login failed: ' + error.message);
+    }
     });
-  </script>
-  
-  </main>
+    </script>
+
+    </main>
 </body>
 
 </html>

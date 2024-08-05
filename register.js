@@ -2,12 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/fireba
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDNt0sZwE-anzM0XePRfTtKSSDd7sb5vxg",
-    authDomain: "authentication-e01e3.firebaseapp.com",
-    projectId: "authentication-e01e3",
-    storageBucket: "authentication-e01e3.appspot.com",
-    messagingSenderId: "1027205635402",
-    appId: "1:1027205635402:web:331c915d866dc7fb77b5b3"
+    apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
+    authDomain: "agroshare-project.firebaseapp.com",
+    databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
+    projectId: "agroshare-project",
+    storageBucket: "agroshare-project.appspot.com",
+    messagingSenderId: "444750909875",
+    appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
+    measurementId: "G-WBVY2TF663"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -17,7 +19,7 @@ document.getElementById('register-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    
+
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
