@@ -184,15 +184,18 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="productdescription" style="font-weight: bold;">Product
                                     Description</label>
-                                    <textarea name="productdescription" id="productdescription" class="form-control" required></textarea>
+                                <textarea name="productdescription" id="productdescription" class="form-control"
+                                    required></textarea>
                                 <!-- <input name="productName" class="form-control"
                                     placeholder="Enter the Name of Your Product" id="productName" required> -->
                                 <div class="invalid-feedback">Please enter the Description of your product.</div>
                             </div>
 
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="itemsIncluded" style="font-weight: bold;">Items Included</label>
-                                    <textarea name="itemsIncluded" id="itemsIncluded" class="form-control" required></textarea>
+                                <label class="form-label" for="itemsIncluded" style="font-weight: bold;">Items
+                                    Included</label>
+                                <textarea name="itemsIncluded" id="itemsIncluded" class="form-control"
+                                    required></textarea>
                                 <!-- <input name="productName" class="form-control"
                                     placeholder="Enter the Name of Your Product" id="productName" required> -->
                                 <div class="invalid-feedback">Please enter the Items Included </div>
@@ -281,61 +284,62 @@
     import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyCO8BRzAyhLhClksHIN-Bspq5P3reiJU7c",
-        authDomain: "agrosharetest.firebaseapp.com",
-        databaseURL: "https://agrosharetest-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "agrosharetest",
-        storageBucket: "agrosharetest.appspot.com",
-        messagingSenderId: "609785482458",
-        appId: "1:609785482458:web:91604937e9e780f6a2e9e3"
+        apiKey: "AIzaSyB-z9SNypbmpCfY3yzrVyaFJnAVZnCJ5IE",
+        authDomain: "agroshare-project.firebaseapp.com",
+        databaseURL: "https://agroshare-project-default-rtdb.firebaseio.com",
+        projectId: "agroshare-project",
+        storageBucket: "agroshare-project.appspot.com",
+        messagingSenderId: "444750909875",
+        appId: "1:444750909875:web:68372fafa9a6f77433bbc6",
+        measurementId: "G-WBVY2TF663"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const storage = getStorage(app);
 
-    document.getElementById('farmerform').addEventListener('submit', async function(event) {
-    event.preventDefault();
+    document.getElementById('farmerform').addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-    let farmName = document.getElementById('farmName').value;
-    let farmProvince = document.getElementById('farmProvince').value;
-    let productType = document.getElementById('productType').value;
-    let productName = document.getElementById('productName').value;
-    let productdescription = document.getElementById('productdescription').value;
-    let itemsIncluded = document.getElementById('itemsIncluded').value; // New field
-    let productImageFile = document.getElementById('productImage').files[0];
+        let farmName = document.getElementById('farmName').value;
+        let farmProvince = document.getElementById('farmProvince').value;
+        let productType = document.getElementById('productType').value;
+        let productName = document.getElementById('productName').value;
+        let productdescription = document.getElementById('productdescription').value;
+        let itemsIncluded = document.getElementById('itemsIncluded').value; // New field
+        let productImageFile = document.getElementById('productImage').files[0];
 
-    if (farmName === "" || farmProvince === "" || productType === "" || productName === "" || productdescription === "" || !productImageFile) {
-        alert("Please fill out all fields.");
-        return;
-    }
+        if (farmName === "" || farmProvince === "" || productType === "" || productName === "" || productdescription === "" || !productImageFile) {
+            alert("Please fill out all fields.");
+            return;
+        }
 
-    try {
-        const uniqueCode = 'ProductID_' + Date.now();
+        try {
+            const uniqueCode = 'ProductID_' + Date.now();
 
-        // Upload image to Firebase Storage
-        const imageRef = storageRef(storage, 'Product_images/' + uniqueCode + '_' + productImageFile.name);
-        await uploadBytes(imageRef, productImageFile);
-        const imageUrl = await getDownloadURL(imageRef);
+            // Upload image to Firebase Storage
+            const imageRef = storageRef(storage, 'Product_images/' + uniqueCode + '_' + productImageFile.name);
+            await uploadBytes(imageRef, productImageFile);
+            const imageUrl = await getDownloadURL(imageRef);
 
-        // Store data in Realtime Database
-        await set(dbRef(db, 'Product_details_to_be_confirm/' + uniqueCode), {
-            farmName: farmName,
-            farmProvince: farmProvince,
-            productName: productName,
-            productType: productType,
-            productdescription: productdescription,
-            itemsIncluded: itemsIncluded, // Store the items included
-            productImageUrl: imageUrl // Store the image URL
-        });
+            // Store data in Realtime Database
+            await set(dbRef(db, 'Product_details_to_be_confirm/' + uniqueCode), {
+                farmName: farmName,
+                farmProvince: farmProvince,
+                productName: productName,
+                productType: productType,
+                productdescription: productdescription,
+                itemsIncluded: itemsIncluded, // Store the items included
+                productImageUrl: imageUrl // Store the image URL
+            });
 
-        alert("Details submitted for review!");
-        farmerform.reset();
-    } catch (error) {
-        console.error("Error during form submission: ", error);
-        alert("There was an error submitting your data. Please try again.");
-    }
-});
+            alert("Details submitted for review!");
+            farmerform.reset();
+        } catch (error) {
+            console.error("Error during form submission: ", error);
+            alert("There was an error submitting your data. Please try again.");
+        }
+    });
 
 </script>
 
